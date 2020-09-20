@@ -1,3 +1,22 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="name">
+    <a class="navbar-brand" href="#">Home page</a>
+  </div>
+  
+    <ul class="navbar-nav contents">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item m-r-20">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+    </ul>
+  
+</nav>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -6,7 +25,10 @@
           <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
           <ul class="text-center list-inline py-3">
             <li class="list-inline-item">
-              <a routerLink="/todos" class="btn btn-info">List Todos</a>
+              <a routerLink="/todos" class="btn btn-info">Your todo tasks</a>
+            </li>
+            <li class="list-inline-item">
+              <a routerLink="/addTodoItem" class="btn btn-info">Add todo task</a>
             </li>
           </ul>
         </div>

@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { TodoItemListComponent } from './todo-item-list/todo-item-list.component';
 
 import { TodoItemService } from './service/todo-item.service';
+import { NewTodoItemComponent } from './new-todo-item/new-todo-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoItemListComponent
+    TodoItemListComponent,
+    NewTodoItemComponent
   ],
   imports: [
     BrowserModule,

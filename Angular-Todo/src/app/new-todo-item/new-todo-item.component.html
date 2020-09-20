@@ -1,0 +1,17 @@
+{{diagnostic}}
+<form (ngSubmit)="onSubmit()" #todoItemForm="ngForm">
+<div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title"
+        required
+        [(ngModel)]="todoItem.title" name="title">  
+</div>
+<div class="form-group">
+    <label for="done">Done</label>
+    <select class="form-control" id="done" required
+        [(ngModel)]="todoItem.done" name="done">
+        <option *ngFor="let done of dones" [value]="done">{{done}}</option>
+    </select>
+</div>
+<button type="submit" class="btn btn-sucess">Submit</button>
+</form>

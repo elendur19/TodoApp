@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TodoItem } from '../model/todo-item';
 import { Observable } from 'rxjs';
+import { TodoItemListComponent } from '../todo-item-list/todo-item-list.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,13 @@ export class TodoItemService {
 
    public findAll(): Observable<TodoItem[]> {
      return this.http.get<TodoItem[]>(this.todoItemUrl);
+   }
+
+   public save(newTodoItem: TodoItem) {
+      return this.http.post<TodoItem>(this.todoItemUrl, newTodoItem)
+        .subscribe(result => {
+          console.log(result);
+
+        })
    }
 }
