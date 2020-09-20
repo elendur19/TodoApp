@@ -1,0 +1,20 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todoItem of todoItems">
+            <td>{{ todoItem.id }}</td>
+            <td>{{ todoItem.title }}</td>
+            <td>{{ todoItem.done }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
