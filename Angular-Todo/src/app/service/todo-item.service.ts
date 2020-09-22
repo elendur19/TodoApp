@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TodoItem } from '../model/todo-item';
 import { Observable } from 'rxjs';
-import { TodoItemListComponent } from '../todo-item-list/todo-item-list.component';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoItemService {
+
+  private todoItemNumberToDelete: number;
   
   private todoItemUrl: string;
 
-  constructor(private http: HttpClient) {
-    this.todoItemUrl = 'http://localhost:8081/todos';
+  constructor(private http: HttpClient,
+              private router: Router) {
+      this.todoItemUrl = 'http://localhost:8081/todos';
    }
 
    public findAll(): Observable<TodoItem[]> {
@@ -23,7 +27,21 @@ export class TodoItemService {
       return this.http.post<TodoItem>(this.todoItemUrl, newTodoItem)
         .subscribe(result => {
           console.log(result);
-
+          this.router.navigate(['/todos']);
         })
+  
+   }
+
+   public deleteTodoItem(): void {
+     this.http.delete<TodoItem>(this.todoItemUrl + '/' + this.todoItemNumberToDelete)
+          .subscribe(result => {
+            this.router.navigate(['/todos']);
+          })
+
+    
+   }
+
+   public setNumber(todoItemNumber: number) {
+     this.todoItemNumberToDelete = todoItemNumber;
    }
 }

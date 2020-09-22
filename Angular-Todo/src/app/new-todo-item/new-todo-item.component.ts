@@ -28,10 +28,6 @@ export class NewTodoItemComponent implements OnInit {
     this.goToTodoList();
   }
 
-  get diagnostic() {
-    return JSON.stringify(this.todoItem);
-  }
-
   public goToTodoList() {
     this.router.navigate(['/todos']);
   }
