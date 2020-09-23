@@ -2,3 +2,22 @@
     border-right: greenyellow;
     border-right-width: 3px;
 }
+
+.size {
+    height: 500px;
+    width: 1200px;
+}
+
+.mb{
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 22px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.mt {
+    margin-top: 50px;
+}

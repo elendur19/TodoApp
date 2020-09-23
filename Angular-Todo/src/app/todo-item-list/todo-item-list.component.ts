@@ -3,6 +3,7 @@ import { DeleteTodoItemComponent } from '../delete-todo-item/delete-todo-item.co
 import { TodoItem } from '../model/todo-item';
 import { TodoItemService } from '../service/todo-item.service';
 import { GridApi } from 'ag-grid-community';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-item-list',
@@ -12,6 +13,9 @@ import { GridApi } from 'ag-grid-community';
 export class TodoItemListComponent implements OnInit {
 
   todoItems: TodoItem[];
+
+  public dropDownAction: string[] = ["all", "important", "done"];
+  public action: string;
 
   columnDefs = [
     { headerName: 'Delete', cellRenderer: 'deleteTodoItemComponent' },
@@ -35,15 +39,16 @@ export class TodoItemListComponent implements OnInit {
   rowData: TodoItem[];
 
   constructor(private todoItemService: TodoItemService,
-              private gridApi: GridApi) {
+              private gridApi: GridApi,
+              private router: Router) {
     this.rowSelection = 'single';
   }
 
 
   ngOnInit(): void {
     this.gridOptions.rowHeight = 30;
-
     this.todoItemService.findAll().subscribe(data => {
+      
       this.todoItems = data;
       this.rowData = data;
       this.initializeNullValues();
@@ -78,6 +83,22 @@ export class TodoItemListComponent implements OnInit {
         todoItem.priority = '/';
       }
     })
+  }
+
+  public changeAction() {
+    console.log(this.action);
+    
+    if(this.action == "all") {
+      this.rowData = this.todoItems;
+    } else if (this.action == "important") {
+      this.rowData = this.todoItems.filter(todoItem => 
+      todoItem.priority == "high"
+      );
+    } else {
+      this.rowData = this.todoItems.filter(todoItem =>
+        todoItem.done == true
+        );
+    }
   }
 
 

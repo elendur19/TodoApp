@@ -1,11 +1,28 @@
-<ag-grid-angular
-    #agGrid
-    style="width: 1000px; height: 500px;"
-    class="ag-theme-balham ag-cell"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [rowSelection]="rowSelection"
-    [gridOptions]="gridOptions"
-    [frameworkComponents]="frameworkComponents"
-    (gridReady)="onGridReady($event)">
-</ag-grid-angular>
+
+<p class="title">Your Todo Items</p>
+
+
+
+<ng-select 
+        #select
+        (close)="select.blur()"
+        [items]="dropDownAction"
+        autofocus
+        (change) = "changeAction()"
+        [(ngModel)]="action">
+</ng-select>
+
+
+<div class="mt">
+    <ag-grid-angular
+        #agGrid
+        class="ag-theme-balham ag-cell size"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [rowSelection]="rowSelection"
+        [gridOptions]="gridOptions"
+        [suppressDragLeaveHidesColumns]=true
+        [frameworkComponents]="frameworkComponents"
+        (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+</div>

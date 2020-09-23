@@ -1,3 +1,19 @@
 .contents {
     display: contents;
 }
+
+.color {
+    background-color: lightgray;
+}
+.navbar-header {
+    float: left;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    
+}
+
+.navbar-brand {
+    float:none;
+    font-size: 32px;
+}
