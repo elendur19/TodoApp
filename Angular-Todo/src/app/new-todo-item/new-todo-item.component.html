@@ -1,26 +1,34 @@
-<form (ngSubmit)="onSubmit()" #todoItemForm="ngForm">
-<div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title"
-        required
-        [(ngModel)]="todoItem.title" name="title">  
+<div>
+    <p class="title">Add new Todo Item</p>
 </div>
-<div class="form-group">
-    <label for="priority">Priority</label>
-    <input type="text" class="form-control" id="priority"
-        [(ngModel)]="todoItem.priority" name="priority">  
+
+<div class="col-8">
+    <div class="card d-flex justify-content-end">
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()" #todoItemForm="ngForm">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" required [(ngModel)]="todoItem.title"
+                        name="title">
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <input type="text" class="form-control" id="priority" [(ngModel)]="todoItem.priority"
+                        name="priority">
+                </div>
+                <div class="form-group">
+                    <label for="finishDate">Finish Date</label>
+                    <input type="text" class="form-control" id="finishDate" [(ngModel)]="todoItem.finishDate"
+                        name="finishDate">
+                </div>
+                <div class="form-group">
+                    <label for="done">Done</label>
+                    <select class="form-control" id="done" required [(ngModel)]="todoItem.done" name="done">
+                        <option *ngFor="let done of dones" [value]="done">{{done}}</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
-<div class="form-group">
-    <label for="finishDate">Finish Date</label>
-    <input type="text" class="form-control" id="finishDate"
-        [(ngModel)]="todoItem.finishDate" name="finishDate">  
-</div>
-<div class="form-group">
-    <label for="done">Done</label>
-    <select class="form-control" id="done" required
-        [(ngModel)]="todoItem.done" name="done">
-        <option *ngFor="let done of dones" [value]="done">{{done}}</option>
-    </select>
-</div>
-<button type="submit" class="btn btn-info">Submit</button>
-</form>

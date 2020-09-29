@@ -29,8 +29,7 @@ export class DeleteTodoItemComponent implements ICellRendererAngularComp, OnInit
   }
 
   public delete() {
-    this.todoItemListComponent.onSelectionChanged();
-    this.todoItemService.deleteTodoItem();
+    this.todoItemListComponent.deleteTodoItem(this.params.node.data.id);
   }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class TodoItemServiceImpl extends AbstractService<TodoItem, Long> implements TodoItemService {
@@ -25,5 +26,21 @@ public class TodoItemServiceImpl extends AbstractService<TodoItem, Long> impleme
         Long id = updatedTodoItem.getId();
         String newTitle = updatedTodoItem.getTitle();
         this.todoRepo.updateTodoItem(id, newTitle);
+    }
+
+    @Override
+    public List<TodoItem> findCompletedTodoItems() {
+        return this.todoRepo.findCompletedTodoItems();
+    }
+
+    @Transactional
+    @Override
+    public void deleteTodoItem(Long id) {
+        this.todoRepo.deleteTodoItem(id);
+    }
+
+    @Override
+    public List<TodoItem> findImportantTodoItems() {
+        return this.todoRepo.findImportantTodoItems();
     }
 }

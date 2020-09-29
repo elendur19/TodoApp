@@ -19,16 +19,26 @@ public class TodoController {
 
     private TodoItemService todoItemService;
 
+    @Autowired
+    private TodoItemRepository todoRepo;
+
     public TodoController(TodoItemService todoItemService) {
         this.todoItemService = todoItemService;
     }
 
-    @Autowired
-    private TodoItemRepository todoRepo;
-
     @GetMapping
     public List<TodoItem> findAll() {
         return todoRepo.findAll();
+    }
+
+    @GetMapping("/completed")
+    public List<TodoItem> findCompletedTodoItems() {
+        return todoItemService.findCompletedTodoItems();
+    }
+
+    @GetMapping("/important")
+    public List<TodoItem> findImportantTodoItems() {
+        return todoItemService.findImportantTodoItems();
     }
 
     @PostMapping
@@ -41,4 +51,8 @@ public class TodoController {
         todoItemService.updateTodoItem(todoItem);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteTodoItem(@PathVariable Long id) {
+        this.todoItemService.deleteTodoItem(id);
+    }
 }

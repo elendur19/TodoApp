@@ -18,6 +18,31 @@
     margin-top: 10px;
 }
 
-.mt {
-    margin-top: 50px;
+
+
+.margin {
+   margin-top: 40px;
 }
+
+.style {
+   width: 80%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.margins {
+    margin-top: 40px;
+    
+ }
+
+ th, td {
+     padding: 20px;
+ }
+ 
+td {
+     border-bottom: 1px solid blue;
+ }
+
+ th {
+     border-bottom: 2px solid blue;
+ }

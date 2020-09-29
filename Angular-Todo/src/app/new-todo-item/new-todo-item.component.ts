@@ -24,12 +24,9 @@ export class NewTodoItemComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.todoItemService.save(this.todoItem)
-    this.goToTodoList();
+    this.todoItemService.save(this.todoItem);
   }
 
-  public goToTodoList() {
-    this.router.navigate(['/todos']);
-  }
+  
 
 }

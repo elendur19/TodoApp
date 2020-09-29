@@ -1,22 +1,51 @@
-
 <p class="title">Your Todo Items</p>
 
+<div class="container">
+    <div class="row">
+        <p class="font-weight-bold">Filter</p>
+        <div class="col-3">
+            <ng-select #select 
+                (close)="select.blur()" 
+                [items]="dropDownAction" 
+                autofocus (change)="changeAction()"
+                [(ngModel)]="action">
+            </ng-select>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-primary" routerLink="/addTodoItem">Add todo item</a>
+        </div>
 
+    </div>
+</div>
 
-<ng-select 
-        #select
-        (close)="select.blur()"
-        [items]="dropDownAction"
-        autofocus
-        (change) = "changeAction()"
-        [(ngModel)]="action">
-</ng-select>
+<div class="table_cont" class="margins">
+    <!-- Table markup-->
 
+    <table id="data_table" class="style">
 
-<div class="mt">
-    <ag-grid-angular
+        <tr>
+            <th>Delete</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Done</th>
+            <th>Priority</th>
+            <th>Finish Date</th>
+        </tr>
+        <tr *ngFor="let todoItem of todoItems" [attr.id]="todoItem.id">
+            <td><input type="button" class="btn btn-danger" value="Delete" (click)="deleteRow(todoItem.id)"></td>
+            <td>{{ todoItem.id }}</td>
+            <td>{{ todoItem.title }}</td>
+            <td>{{ todoItem.done }}</td>
+            <td>{{ todoItem.priority }}</td>
+            <td>{{ todoItem.finishDate }}</td>
+        </tr>
+        
+
+    </table>
+</div>
+<!--     <ag-grid-angular
         #agGrid
-        class="ag-theme-balham ag-cell size"
+        class="ag-theme-balham ag-cell size col-md-8 offset-md-2 margin"
         [rowData]="rowData"
         [columnDefs]="columnDefs"
         [rowSelection]="rowSelection"
@@ -25,4 +54,4 @@
         [frameworkComponents]="frameworkComponents"
         (gridReady)="onGridReady($event)">
     </ag-grid-angular>
-</div>
+ -->

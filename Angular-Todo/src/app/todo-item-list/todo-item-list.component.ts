@@ -18,7 +18,9 @@ export class TodoItemListComponent implements OnInit {
   public action: string;
 
   columnDefs = [
-    { headerName: 'Delete', cellRenderer: 'deleteTodoItemComponent' },
+    { headerName: 'Delete', cellRenderer: 'deleteTodoItemComponent', cellRendererParams :{
+      color: 'guinnessBlack'
+  } },
     { headerName: '#', field: 'id' },
     { headerName: 'Title', field: 'title' },
     { headerName: 'Priority', field: 'priority' },
@@ -28,15 +30,13 @@ export class TodoItemListComponent implements OnInit {
   ]
 
   public gridOptions: any = {};
-
+  public rowData: TodoItem[];
   private gridColumnApi;
   public rowSelection;
 
   public frameworkComponents = {
     deleteTodoItemComponent: DeleteTodoItemComponent
   };
-  
-  rowData: TodoItem[];
 
   constructor(private todoItemService: TodoItemService,
               private gridApi: GridApi,
@@ -47,13 +47,23 @@ export class TodoItemListComponent implements OnInit {
 
   ngOnInit(): void {
     this.gridOptions.rowHeight = 30;
+    this.getAll();
+   // console.log(document.getElementById("table"));
+  }
+
+  public getAll(){
     this.todoItemService.findAll().subscribe(data => {
-      
       this.todoItems = data;
       this.rowData = data;
       this.initializeNullValues();
     })
+  }
 
+   deleteRow(todoItemId: string) {
+      //console.log(todoItemId);
+      this.todoItemService.deleteTodoItem(todoItemId).subscribe( data => {
+        this.getAll();
+      })
   }
 
   onGridReady(params) {
@@ -63,7 +73,9 @@ export class TodoItemListComponent implements OnInit {
 
   onSelectionChanged() {
     var selectedRow = this.gridApi.getSelectedRows();
-    var todoItem = JSON.stringify(selectedRow);
+   // console.log("nesta : " + selectedRow[0].title);
+    
+    /* var todoItem = JSON.stringify(selectedRow);
     for(var value in selectedRow) {
       console.log(value, selectedRow[value]);  
     }
@@ -71,33 +83,60 @@ export class TodoItemListComponent implements OnInit {
     var todoItemNumberToDelete;
     for(var i in stringify) {
       todoItemNumberToDelete = stringify[i]['id'];
-    }
-    this.todoItemService.setNumber(todoItemNumberToDelete);
+    } */
+    
 
-    console.log("number to delete " + todoItemNumberToDelete);
+    console.log("number to delete " + selectedRow[0].id);
+
+    this.todoItemService.deleteTodoItem(selectedRow[0].id);
+
+    //this.gridApi.setRowData(this.rowData);
+
+  /*    this.todoItemService.findAll().subscribe(data => {
+      this.todoItems = data;
+      this.rowData = data;
+      this.initializeNullValues();
+      this.gridApi.setRowData(this.rowData);
+    }) */
+ 
   }
 
   public initializeNullValues() {
     this.todoItems.forEach(todoItem => {
-      if(todoItem.priority == null) {
-        todoItem.priority = '/';
+      if(todoItem.priority == '') {
+        todoItem.priority = '-';
       }
     })
+  }
+
+  public deleteTodoItem(todoItemId: string){
+    this.todoItemService.deleteTodoItem(todoItemId).subscribe(a=> {this.getAll();})
   }
 
   public changeAction() {
     console.log(this.action);
     
-    if(this.action == "all") {
-      this.rowData = this.todoItems;
+    if(this.action == "all" || this.action == null) {
+      this.todoItemService.findAll()
+        .subscribe(allTodoItems => {
+          this.rowData = allTodoItems;
+          this.todoItems = allTodoItems;
+          this.initializeNullValues();
+        })
     } else if (this.action == "important") {
-      this.rowData = this.todoItems.filter(todoItem => 
-      todoItem.priority == "high"
-      );
+      this.todoItemService.findImportant()
+        .subscribe(importantTodoItems => {
+          this.rowData = importantTodoItems;
+          this.todoItems = importantTodoItems;
+          this.initializeNullValues();
+        })
     } else {
-      this.rowData = this.todoItems.filter(todoItem =>
-        todoItem.done == true
-        );
+       this.todoItemService.findCompleted()
+          .subscribe(completedTodoItems => {
+            this.rowData = completedTodoItems;
+            this.todoItems = completedTodoItems;
+            this.initializeNullValues();
+          })
     }
   }
 
