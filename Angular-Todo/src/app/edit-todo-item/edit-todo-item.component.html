@@ -1,11 +1,11 @@
 <div>
-    <p class="title">Add new Todo Item</p>
+    <p class="title">Edit Todo Item</p>
 </div>
 <div class="mt-5">
     <div class="col-8 m-l-auto m-r-auto">
         <div class="card d-flex justify-content-end">
             <div class="card-body">
-                <form (ngSubmit)="onSubmit()" #todoItemForm="ngForm">
+                <form (ngSubmit)="onSubmit()" #editTodoItemForm="ngForm">
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" required [(ngModel)]="todoItem.title"
@@ -33,7 +33,6 @@
         </div>
     </div>
 </div>
-
 <div class="container col-8">
     <button class="btn btn-primary mt float-right" routerLink="/todos">Back to My Todo Items</button>
 </div>

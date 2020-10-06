@@ -31,6 +31,11 @@ public class TodoController {
         return todoRepo.findAll();
     }
 
+    @GetMapping("/{id}")
+    public TodoItem getTodoItemById(@PathVariable Long id) {
+        return this.todoItemService.getTodoItemById(id);
+    }
+
     @GetMapping("/completed")
     public List<TodoItem> findCompletedTodoItems() {
         return todoItemService.findCompletedTodoItems();

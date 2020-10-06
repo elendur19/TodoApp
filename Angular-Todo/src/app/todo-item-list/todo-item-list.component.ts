@@ -59,11 +59,16 @@ export class TodoItemListComponent implements OnInit {
     })
   }
 
-   deleteRow(todoItemId: string) {
-      //console.log(todoItemId);
-      this.todoItemService.deleteTodoItem(todoItemId).subscribe( data => {
-        this.getAll();
-      })
+  deleteRow(todoItemId: string) {
+    //console.log(todoItemId);
+    this.todoItemService.deleteTodoItem(todoItemId).subscribe( data => {
+      this.getAll();
+    })
+  }
+
+  editRow(todoItemId: string) {
+    this.todoItemService.changeTodoItemId(todoItemId);
+    this.router.navigate(['editTodoItem']);
   }
 
   onGridReady(params) {

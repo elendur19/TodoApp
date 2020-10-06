@@ -12,3 +12,37 @@
     border-style: solid;
 
 }
+
+.m-l-auto {
+    margin-left: auto;
+}
+
+.m-r-auto {
+    margin-right: auto;
+}
+
+.title {
+    font-size: 22px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color:  #009879;
+    border-color: white;
+}
+
+.btn-primary:hover {
+    background-color: #009879;
+    border-color: white;
+}
+
+.btn-primary:active {
+    background-color: #009879;
+    border-color: white;
+}
+
+button:active{
+    background-color: #009879;
+    border-color: white;
+}

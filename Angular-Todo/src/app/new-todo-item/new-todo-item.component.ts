@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NewTodoItemComponent implements OnInit {
 
-  public dones = ['true', 'false'];
+  public done = ['true', 'false'];
 
   private submitted = false;
   public todoItem = new TodoItem();
@@ -26,7 +26,5 @@ export class NewTodoItemComponent implements OnInit {
     this.submitted = true;
     this.todoItemService.save(this.todoItem);
   }
-
-  
 
 }

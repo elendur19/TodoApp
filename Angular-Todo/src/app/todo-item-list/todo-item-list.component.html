@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <p class="font-weight-bold">Filter</p>
+        <p class="font-weight-bold">Filter : </p>
         <div class="col-3">
             <ng-select #select 
                 (close)="select.blur()" 
@@ -22,24 +22,28 @@
     <!-- Table markup-->
 
     <table id="data_table" class="style">
-
-        <tr>
-            <th>Delete</th>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Done</th>
-            <th>Priority</th>
-            <th>Finish Date</th>
-        </tr>
-        <tr *ngFor="let todoItem of todoItems" [attr.id]="todoItem.id">
-            <td><input type="button" class="btn btn-danger" value="Delete" (click)="deleteRow(todoItem.id)"></td>
-            <td>{{ todoItem.id }}</td>
-            <td>{{ todoItem.title }}</td>
-            <td>{{ todoItem.done }}</td>
-            <td>{{ todoItem.priority }}</td>
-            <td>{{ todoItem.finishDate }}</td>
-        </tr>
-        
+        <thead>
+            <tr>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Done</th>
+                <th>Priority</th>
+                <th>Finish Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todoItem of todoItems" [attr.id]="todoItem.id">
+                <td><input type="button" class="btn btn-danger" value="Delete" (click)="deleteRow(todoItem.id)"></td>
+                <td><input type="button" class="btn btn-secondary" value="Edit" (click)="editRow(todoItem.id)"></td>
+                <td>{{ todoItem.id }}</td>
+                <td>{{ todoItem.title }}</td>
+                <td>{{ todoItem.done }}</td>
+                <td>{{ todoItem.priority }}</td>
+                <td>{{ todoItem.finishDate }}</td>
+            </tr>
+        </tbody>
 
     </table>
 </div>

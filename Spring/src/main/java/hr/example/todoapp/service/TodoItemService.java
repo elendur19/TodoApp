@@ -9,4 +9,5 @@ public interface TodoItemService extends CRUDService<TodoItem, Long> {
     List<TodoItem> findCompletedTodoItems();
     void deleteTodoItem(Long id);
     List<TodoItem> findImportantTodoItems();
+    TodoItem getTodoItemById(Long id);
 }

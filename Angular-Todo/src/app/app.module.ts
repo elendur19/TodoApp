@@ -14,13 +14,15 @@ import { TodoItemService } from './service/todo-item.service';
 import { NewTodoItemComponent } from './new-todo-item/new-todo-item.component';
 import { DeleteTodoItemComponent } from './delete-todo-item/delete-todo-item.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { EditTodoItemComponent } from './edit-todo-item/edit-todo-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoItemListComponent,
     NewTodoItemComponent,
-    DeleteTodoItemComponent
+    DeleteTodoItemComponent,
+    EditTodoItemComponent
   ],
   imports: [
     BrowserModule,
